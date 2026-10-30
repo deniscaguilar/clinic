@@ -4,6 +4,12 @@ Registro de onde paramos, para retomar a próxima sessão sem reler a conversa. 
 
 ## 30/10/2026
 
+### Extras do M0: notificações, edição de paciente e login manual (30/10/2026)
+- **T6.10 tela de notificações** (`/notifications`, o item de menu existia sem tela): lista com tipo, canal, situação, tentativas, código de erro e próxima tentativa, filtros por situação e canal, paginação, horário em `America/Sao_Paulo`, paciente só por id. 8 testes; 5 mutantes mortos.
+- **T6.11 edição de paciente** (`/patients/:id/edit`): o formulário foi extraído do cadastro (`PatientForm`) e é usado pelos dois. Sem `CHANGE_PATIENT_CPF` o CPF aparece somente leitura; com a permissão, só é enviado se mudou (senão `null`, e o servidor confere a permissão de novo). Link "Editar paciente" só com `MANAGE_PATIENTS`. 11 testes; 7 mutantes mortos.
+- **T6.12 login manual:** `docker/oidc/oidc-config.json` passou a casar o mapeamento de claims por `grant_type` (decisão sua). Sem `scope`, o token sai com `sub` `local-user` e `aud` `clinic-api`; o container `oidc` precisa ser reiniciado (`docker restart clinic-system-oidc-1`) para ler a mudança. O e2e deixou de informar as claims no formulário e passou 2 vezes, agora também com edição e a tela de notificações.
+- **Front:** 176 testes no Vitest. Tarefas T6.10 a T6.12 criadas no board (59 cards).
+
 ### Repositório criado e decisões de 30/10/2026 (depois do fechamento do M0)
 - **Repositório `clinic`** criado em `https://github.com/deniscaguilar/clinic` (público por enquanto, nome provisório), nos moldes do `heracles`: primeiro commit só com `README.md` e `.gitignore` na `main` (inevitável: repositório vazio não tem base para PR), secret scanning e push protection ativos, autor `Dênis Casado Aguilar`. O resto entra por PR, com a revisão única no Plannotator.
 - **CI e Dependabot** adicionados em `.github/` (backend `verify` + cobertura, app testes + build, OSV-Scanner sobre o SBOM, `npm audit`). Ainda não rodaram: a primeira execução no GitHub é a prova. **Proteção da `main`** (checks obrigatórios, histórico linear, sem force push, admins incluídos) será ativada depois do primeiro CI verde, como você pediu.

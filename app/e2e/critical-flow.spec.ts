@@ -18,10 +18,8 @@ test('login, clinic choice and patient registration with consent', async ({ page
 
   // Login no mock OIDC (Authorization Code + PKCE) como "local-user", criado como PLATFORM_ADMIN no setup.
   await page.goto('/')
-  // No fluxo de código o mock não aplica o mapeamento de claims do oidc-config.json (ele depende do parâmetro `scope` da
-  // requisição de token), então o formulário informa o sub e a audiência que o backend exige.
+  // O mock OIDC (docker/oidc/oidc-config.json) emite sempre sub "local-user" e aud "clinic-api", seja qual for o usuário digitado.
   await page.locator('input[name=username]').fill('local-user')
-  await page.locator('textarea[name=claims]').fill('{"sub":"local-user","aud":["clinic-api"]}')
   await page.locator('input[type=submit]').click()
   await page.waitForURL((url) => url.port !== '8081' && !url.pathname.startsWith('/auth/')) // callback concluído
 
@@ -78,7 +76,18 @@ test('login, clinic choice and patient registration with consent', async ({ page
   expect(page.url()).not.toContain('52998224725')
   expect(page.url()).not.toContain('529.982')
 
+  // Edição do paciente.
+  await page.getByRole('link', { name: 'Editar paciente' }).click()
+  await expect(page.getByRole('textbox', { name: 'CPF', exact: true })).toHaveValue('529.982.247-25') // o administrador pode trocar o CPF
+  await page.getByLabel('Nome completo').fill('Maria Exemplo Souza Lima')
+  await page.getByRole('button', { name: 'Salvar alterações' }).click()
+  await expect(page.getByRole('heading', { name: 'Maria Exemplo Souza Lima' })).toBeVisible()
+
   // Revogação do consentimento.
   await page.getByRole('button', { name: 'Revogar' }).click()
   await expect(page.getByRole('list', { name: 'Consentimentos' })).toContainText('revogado em')
+
+  // Tela de notificações (a confirmação do aceite é enfileirada para os canais cadastrados).
+  await menu.getByRole('link', { name: 'Notificações' }).click()
+  await expect(page.getByRole('heading', { name: 'Notificações' })).toBeVisible()
 })
