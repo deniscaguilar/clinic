@@ -1,6 +1,6 @@
 # Sistema da Clínica
 
-Sistema de gestão clínica (PWA + backoffice) para o Instituto Pedro Guerra e, depois, para clínicas mentoradas da Endo Academy. Nome definitivo do produto: **a definir**.
+Sistema de gestão clínica (PWA + backoffice) para a Clínica da DCA e, depois, para clínicas mentoradas da Endo Academy. Nome definitivo do produto: **a definir**.
 
 ## Estrutura
 
@@ -11,6 +11,7 @@ Sistema de gestão clínica (PWA + backoffice) para o Instituto Pedro Guerra e, 
 | `docs/architecture.md` | Módulos, dependências permitidas e visão geral |
 | `docs/workflow.md` | Fluxo SDD, Git, ambiente local e portão do CI |
 | `docs/progress-log.md` | Diário de progresso: onde paramos e próximos passos |
+| `docs/consent/` | Textos de consentimento **de teste** (sem validade jurídica) |
 | `docs/adr/` | Decisões de arquitetura (ADRs) |
 | `specs/` | Specs (SDD): `spec.md` → `plan.md` → `tasks.md` por funcionalidade |
 | `backend/` | Monolito modular Kotlin + Spring Boot (Maven) |

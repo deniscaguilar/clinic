@@ -1,0 +1,2361 @@
+openapi: 3.1.0
+info:
+  title: Sistema da Clínica API
+  version: v1
+servers:
+- url: /
+security:
+- bearerAuth: []
+paths:
+  /api/v1/roles/{roleId}:
+    put:
+      tags:
+      - role-controller
+      operationId: update
+      parameters:
+      - name: roleId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RoleRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RoleResponse"
+    delete:
+      tags:
+      - role-controller
+      operationId: delete
+      parameters:
+      - name: roleId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "204":
+          description: No Content
+  /api/v1/procedures/{id}:
+    get:
+      tags:
+      - procedure-controller
+      operationId: get
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ProcedureResponse"
+    put:
+      tags:
+      - procedure-controller
+      operationId: update_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProcedureUpdateRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ProcedureResponse"
+  /api/v1/practitioners/{id}:
+    get:
+      tags:
+      - practitioner-controller
+      operationId: get_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PractitionerResponse"
+    put:
+      tags:
+      - practitioner-controller
+      operationId: update_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PractitionerUpdateRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PractitionerResponse"
+  /api/v1/patients/{id}:
+    get:
+      tags:
+      - patient-controller
+      operationId: get_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PatientResponse"
+    put:
+      tags:
+      - patient-controller
+      operationId: update_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatientRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PatientResponse"
+  /api/v1/consent-types/{id}:
+    get:
+      tags:
+      - consent-type-controller
+      operationId: get_3
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DetailResponse"
+    put:
+      tags:
+      - consent-type-controller
+      operationId: revise
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConsentTypeUpdateRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DetailResponse"
+  /api/v1/branding:
+    get:
+      tags:
+      - branding-controller
+      operationId: get_4
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BrandingResponse"
+    put:
+      tags:
+      - branding-controller
+      operationId: put
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BrandingRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BrandingResponse"
+  /api/v1/branding/logo:
+    put:
+      tags:
+      - branding-controller
+      operationId: logo
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+              - file
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BrandingResponse"
+  /api/v1/branding/favicon:
+    put:
+      tags:
+      - branding-controller
+      operationId: favicon
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+              - file
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BrandingResponse"
+  /api/v1/admin/consent-templates/{id}:
+    get:
+      tags:
+      - admin-consent-template-controller
+      operationId: get_5
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/TemplateResponse"
+    put:
+      tags:
+      - admin-consent-template-controller
+      operationId: update_4
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TemplateUpdateRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/TemplateResponse"
+  /api/v1/users:
+    get:
+      tags:
+      - user-controller
+      operationId: list
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MemberResponse"
+    post:
+      tags:
+      - user-controller
+      operationId: invite
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InviteRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/InviteResponse"
+  /api/v1/users/{membershipId}/resend-invitation:
+    post:
+      tags:
+      - user-controller
+      operationId: resend
+      parameters:
+      - name: membershipId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserInvitationResponse"
+  /api/v1/users/{membershipId}/deactivate:
+    post:
+      tags:
+      - user-controller
+      operationId: deactivate
+      parameters:
+      - name: membershipId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "204":
+          description: No Content
+  /api/v1/roles:
+    get:
+      tags:
+      - role-controller
+      operationId: list_1
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RoleResponse"
+    post:
+      tags:
+      - role-controller
+      operationId: create
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RoleRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RoleResponse"
+  /api/v1/procedures:
+    get:
+      tags:
+      - procedure-controller
+      operationId: list_2
+      parameters:
+      - name: active
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProcedureResponse"
+    post:
+      tags:
+      - procedure-controller
+      operationId: create_1
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProcedureCreateRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ProcedureResponse"
+  /api/v1/practitioners:
+    get:
+      tags:
+      - practitioner-controller
+      operationId: list_3
+      parameters:
+      - name: active
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PractitionerResponse"
+    post:
+      tags:
+      - practitioner-controller
+      operationId: register
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PractitionerRegisterRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PractitionerResponse"
+  /api/v1/patients:
+    get:
+      tags:
+      - patient-controller
+      operationId: list_4
+      parameters:
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PatientPageResponse"
+    post:
+      tags:
+      - patient-controller
+      operationId: register_1
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatientRegisterRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RegisteredPatientResponse"
+  /api/v1/patients/{patientId}/consents:
+    get:
+      tags:
+      - patient-consent-controller
+      operationId: list_5
+      parameters:
+      - name: patientId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GrantResponse"
+    post:
+      tags:
+      - patient-consent-controller
+      operationId: accept
+      parameters:
+      - name: patientId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AcceptRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GrantResponse"
+  /api/v1/patients/{patientId}/consents/{grantId}/revoke:
+    post:
+      tags:
+      - patient-consent-controller
+      operationId: revoke
+      parameters:
+      - name: patientId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: grantId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GrantResponse"
+  /api/v1/patients/search:
+    post:
+      tags:
+      - patient-controller
+      operationId: search
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/SearchResponse"
+  /api/v1/consent-types:
+    get:
+      tags:
+      - consent-type-controller
+      operationId: list_6
+      parameters:
+      - name: active
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SummaryResponse"
+    post:
+      tags:
+      - consent-type-controller
+      operationId: create_2
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConsentTypeCreateRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DetailResponse"
+  /api/v1/consent-types/import-template:
+    post:
+      tags:
+      - consent-type-controller
+      operationId: import
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImportRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/DetailResponse"
+  /api/v1/admin/consent-templates:
+    get:
+      tags:
+      - admin-consent-template-controller
+      operationId: list_7
+      parameters:
+      - name: active
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TemplateResponse"
+    post:
+      tags:
+      - admin-consent-template-controller
+      operationId: create_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TemplateCreateRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/TemplateResponse"
+  /api/v1/admin/clinics:
+    get:
+      tags:
+      - admin-clinic-controller
+      operationId: list_8
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ClinicOverviewResponse"
+    post:
+      tags:
+      - admin-clinic-controller
+      operationId: create_4
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateClinicRequest"
+        required: true
+      responses:
+        "201":
+          description: Created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CreateClinicResponse"
+  /api/v1/admin/clinics/{clinicId}/deactivate:
+    post:
+      tags:
+      - admin-clinic-controller
+      operationId: deactivate_1
+      parameters:
+      - name: clinicId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "204":
+          description: No Content
+  /api/v1/admin/clinics/{clinicId}/admins/{membershipId}/resend-invitation:
+    post:
+      tags:
+      - admin-clinic-controller
+      operationId: resend_1
+      parameters:
+      - name: clinicId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: membershipId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ClinicInvitationResponse"
+  /api/v1/admin/clinics/{clinicId}/activate:
+    post:
+      tags:
+      - admin-clinic-controller
+      operationId: activate
+      parameters:
+      - name: clinicId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "204":
+          description: No Content
+  /api/v1/users/{membershipId}:
+    patch:
+      tags:
+      - user-controller
+      operationId: updateRoles
+      parameters:
+      - name: membershipId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RolesRequest"
+        required: true
+      responses:
+        "204":
+          description: No Content
+  /api/v1/admin/clinics/{clinicId}:
+    get:
+      tags:
+      - admin-clinic-controller
+      operationId: get_6
+      parameters:
+      - name: clinicId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ClinicDetailResponse"
+    patch:
+      tags:
+      - admin-clinic-controller
+      operationId: update_5
+      parameters:
+      - name: clinicId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateClinicRequest"
+        required: true
+      responses:
+        "204":
+          description: No Content
+  /api/v1/session:
+    get:
+      tags:
+      - session-controller
+      operationId: session
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/SessionResponse"
+  /api/v1/permissions:
+    get:
+      tags:
+      - role-controller
+      operationId: permissions
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PermissionResponse"
+  /api/v1/notifications:
+    get:
+      tags:
+      - notification-controller
+      operationId: list_9
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - PENDING
+          - SENT
+          - FAILED
+          - BLOCKED_NO_CONSENT
+          - CANCELLED
+      - name: channel
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - EMAIL
+          - WHATSAPP
+      - name: patientId
+        in: query
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/NotificationPageResponse"
+  /api/v1/me:
+    get:
+      tags:
+      - session-controller
+      operationId: me
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/MeResponse"
+  /api/v1/me/clinics:
+    get:
+      tags:
+      - session-controller
+      operationId: clinics
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ClinicResponse"
+  /api/v1/consent-templates:
+    get:
+      tags:
+      - consent-type-controller
+      operationId: templates
+      parameters:
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TemplateOfferResponse"
+  /api/v1/audit-events:
+    get:
+      tags:
+      - audit-controller
+      operationId: list_10
+      parameters:
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: userId
+        in: query
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - name: action
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: entityType
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: X-Clinic-Id
+        in: header
+        description: Clínica ativa
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AuditPageResponse"
+components:
+  schemas:
+    RoleRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - "null"
+          maxLength: 60
+          minLength: 0
+        permissions:
+          type:
+          - array
+          - "null"
+          items:
+            type: string
+      required:
+      - name
+    RoleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        members:
+          type: integer
+          format: int32
+    ProcedureUpdateRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - "null"
+        description:
+          type:
+          - string
+          - "null"
+        active:
+          type:
+          - boolean
+          - "null"
+      required:
+      - active
+    ProcedureResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type:
+          - string
+          - "null"
+        active:
+          type: boolean
+    IntervalBody:
+      type: object
+      properties:
+        dayOfWeek:
+          type:
+          - string
+          - "null"
+        start:
+          type:
+          - string
+          - "null"
+        end:
+          type:
+          - string
+          - "null"
+    PractitionerUpdateRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - "null"
+        type:
+          type:
+          - string
+          - "null"
+        registrationNumber:
+          type:
+          - string
+          - "null"
+        userId:
+          type:
+          - string
+          - "null"
+          format: uuid
+        active:
+          type:
+          - boolean
+          - "null"
+        workSchedule:
+          type:
+          - array
+          - "null"
+          items:
+            $ref: "#/components/schemas/IntervalBody"
+      required:
+      - active
+      - type
+    IntervalResponse:
+      type: object
+      properties:
+        dayOfWeek:
+          type: string
+        start:
+          type: string
+        end:
+          type: string
+    PractitionerResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        type:
+          type: string
+        registrationNumber:
+          type:
+          - string
+          - "null"
+        userId:
+          type:
+          - string
+          - "null"
+          format: uuid
+        active:
+          type: boolean
+        workSchedule:
+          type: array
+          items:
+            $ref: "#/components/schemas/IntervalResponse"
+    AddressBody:
+      type: object
+      properties:
+        zipCode:
+          type:
+          - string
+          - "null"
+        street:
+          type:
+          - string
+          - "null"
+        number:
+          type:
+          - string
+          - "null"
+        complement:
+          type:
+          - string
+          - "null"
+        district:
+          type:
+          - string
+          - "null"
+        city:
+          type:
+          - string
+          - "null"
+        state:
+          type:
+          - string
+          - "null"
+    PatientRequest:
+      type: object
+      properties:
+        cpf:
+          type:
+          - string
+          - "null"
+        fullName:
+          type:
+          - string
+          - "null"
+        birthDate:
+          type:
+          - string
+          - "null"
+          format: date
+        whatsapp:
+          type:
+          - string
+          - "null"
+        email:
+          type:
+          - string
+          - "null"
+        landline:
+          type:
+          - string
+          - "null"
+        address:
+          oneOf:
+          - $ref: "#/components/schemas/AddressBody"
+          - type: "null"
+    AddressResponse:
+      type: object
+      properties:
+        zipCode:
+          type: string
+        street:
+          type: string
+        number:
+          type: string
+        complement:
+          type:
+          - string
+          - "null"
+        district:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+    PatientResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        fullName:
+          type: string
+        cpf:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        whatsapp:
+          type:
+          - string
+          - "null"
+        email:
+          type:
+          - string
+          - "null"
+        landline:
+          type:
+          - string
+          - "null"
+        address:
+          $ref: "#/components/schemas/AddressResponse"
+    ConsentTypeUpdateRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - "null"
+        text:
+          type:
+          - string
+          - "null"
+        requiredOnSignup:
+          type:
+          - boolean
+          - "null"
+        controlsMessaging:
+          type:
+          - boolean
+          - "null"
+        active:
+          type:
+          - boolean
+          - "null"
+      required:
+      - active
+      - controlsMessaging
+      - requiredOnSignup
+    DetailResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        requiredOnSignup:
+          type: boolean
+        controlsMessaging:
+          type: boolean
+        active:
+          type: boolean
+        currentVersion:
+          $ref: "#/components/schemas/VersionResponse"
+        versions:
+          type: array
+          items:
+            $ref: "#/components/schemas/VersionResponse"
+    VersionResponse:
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int32
+        text:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    BrandingRequest:
+      type: object
+      properties:
+        displayName:
+          type:
+          - string
+          - "null"
+          maxLength: 120
+          minLength: 0
+        primaryColor:
+          type:
+          - string
+          - "null"
+          maxLength: 16
+          minLength: 0
+        secondaryColor:
+          type:
+          - string
+          - "null"
+          maxLength: 16
+          minLength: 0
+      required:
+      - displayName
+      - primaryColor
+      - secondaryColor
+    BrandingResponse:
+      type: object
+      properties:
+        displayName:
+          type: string
+        primaryColor:
+          type: string
+        secondaryColor:
+          type: string
+        onPrimary:
+          type: string
+        logoUrl:
+          type:
+          - string
+          - "null"
+        faviconUrl:
+          type:
+          - string
+          - "null"
+    TemplateUpdateRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - "null"
+        text:
+          type:
+          - string
+          - "null"
+        requiredOnSignup:
+          type:
+          - boolean
+          - "null"
+        controlsMessaging:
+          type:
+          - boolean
+          - "null"
+        active:
+          type:
+          - boolean
+          - "null"
+      required:
+      - active
+      - controlsMessaging
+      - requiredOnSignup
+    TemplateResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        text:
+          type: string
+        requiredOnSignup:
+          type: boolean
+        controlsMessaging:
+          type: boolean
+        active:
+          type: boolean
+    InviteRequest:
+      type: object
+      properties:
+        email:
+          type:
+          - string
+          - "null"
+          maxLength: 254
+          minLength: 0
+        name:
+          type:
+          - string
+          - "null"
+          maxLength: 120
+          minLength: 0
+        roleIds:
+          type:
+          - array
+          - "null"
+          items:
+            type: string
+            format: uuid
+      required:
+      - email
+      - name
+    InviteResponse:
+      type: object
+      properties:
+        membershipId:
+          type: string
+          format: uuid
+        status:
+          type: string
+    UserInvitationResponse:
+      type: object
+      properties:
+        status:
+          type: string
+    ProcedureCreateRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - "null"
+        description:
+          type:
+          - string
+          - "null"
+    PractitionerRegisterRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - "null"
+        type:
+          type:
+          - string
+          - "null"
+        registrationNumber:
+          type:
+          - string
+          - "null"
+        userId:
+          type:
+          - string
+          - "null"
+          format: uuid
+        workSchedule:
+          type:
+          - array
+          - "null"
+          items:
+            $ref: "#/components/schemas/IntervalBody"
+      required:
+      - type
+    ConsentRef:
+      type: object
+      properties:
+        typeId:
+          type:
+          - string
+          - "null"
+          format: uuid
+      required:
+      - typeId
+    PatientRegisterRequest:
+      type: object
+      properties:
+        cpf:
+          type:
+          - string
+          - "null"
+        fullName:
+          type:
+          - string
+          - "null"
+        birthDate:
+          type:
+          - string
+          - "null"
+          format: date
+        whatsapp:
+          type:
+          - string
+          - "null"
+        email:
+          type:
+          - string
+          - "null"
+        landline:
+          type:
+          - string
+          - "null"
+        address:
+          oneOf:
+          - $ref: "#/components/schemas/AddressBody"
+          - type: "null"
+        consents:
+          type:
+          - array
+          - "null"
+          items:
+            $ref: "#/components/schemas/ConsentRef"
+    ConsentGrantResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        typeId:
+          type: string
+          format: uuid
+        versionNumber:
+          type: integer
+          format: int32
+        acceptedAt:
+          type: string
+          format: date-time
+    RegisteredPatientResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        fullName:
+          type: string
+        cpf:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        whatsapp:
+          type:
+          - string
+          - "null"
+        email:
+          type:
+          - string
+          - "null"
+        landline:
+          type:
+          - string
+          - "null"
+        address:
+          $ref: "#/components/schemas/AddressResponse"
+        consents:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConsentGrantResponse"
+    AcceptRequest:
+      type: object
+      properties:
+        typeId:
+          type:
+          - string
+          - "null"
+          format: uuid
+      required:
+      - typeId
+    GrantResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        typeId:
+          type: string
+          format: uuid
+        typeName:
+          type:
+          - string
+          - "null"
+        versionNumber:
+          type: integer
+          format: int32
+        acceptedAt:
+          type: string
+          format: date-time
+        channel:
+          type: string
+        acceptedBy:
+          type: string
+          format: uuid
+        revokedAt:
+          type:
+          - string
+          - "null"
+          format: date-time
+        revokedBy:
+          type:
+          - string
+          - "null"
+          format: uuid
+        active:
+          type: boolean
+    SearchRequest:
+      type: object
+      properties:
+        cpf:
+          type:
+          - string
+          - "null"
+    SearchResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/PatientResponse"
+    ConsentTypeCreateRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - "null"
+        text:
+          type:
+          - string
+          - "null"
+        requiredOnSignup:
+          type:
+          - boolean
+          - "null"
+        controlsMessaging:
+          type:
+          - boolean
+          - "null"
+      required:
+      - controlsMessaging
+      - requiredOnSignup
+    ImportRequest:
+      type: object
+      properties:
+        templateId:
+          type:
+          - string
+          - "null"
+          format: uuid
+      required:
+      - templateId
+    TemplateCreateRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - "null"
+        text:
+          type:
+          - string
+          - "null"
+        requiredOnSignup:
+          type:
+          - boolean
+          - "null"
+        controlsMessaging:
+          type:
+          - boolean
+          - "null"
+      required:
+      - controlsMessaging
+      - requiredOnSignup
+    CreateClinicRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - "null"
+          maxLength: 120
+          minLength: 0
+        adminEmail:
+          type:
+          - string
+          - "null"
+          maxLength: 254
+          minLength: 0
+        adminName:
+          type:
+          - string
+          - "null"
+          maxLength: 120
+          minLength: 0
+      required:
+      - adminEmail
+      - adminName
+      - name
+    CreateClinicResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        firstAdmin:
+          $ref: "#/components/schemas/FirstAdminResponse"
+    FirstAdminResponse:
+      type: object
+      properties:
+        membershipId:
+          type: string
+          format: uuid
+        status:
+          type: string
+    ClinicInvitationResponse:
+      type: object
+      properties:
+        status:
+          type: string
+    RolesRequest:
+      type: object
+      properties:
+        roleIds:
+          type:
+          - array
+          - "null"
+          items:
+            type: string
+            format: uuid
+    UpdateClinicRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - "null"
+          maxLength: 120
+          minLength: 0
+      required:
+      - name
+    MemberResponse:
+      type: object
+      properties:
+        membershipId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        email:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserRoleResponse"
+    UserRoleResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    ClinicResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    MeResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+        name:
+          type: string
+    SessionResponse:
+      type: object
+      properties:
+        user:
+          $ref: "#/components/schemas/MeResponse"
+        clinic:
+          $ref: "#/components/schemas/ClinicResponse"
+        roles:
+          type: array
+          items:
+            type: string
+        permissions:
+          type: array
+          items:
+            type: string
+        branding:
+          $ref: "#/components/schemas/BrandingResponse"
+    PermissionResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    PatientPageResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/PatientSummary"
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
+    PatientSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        fullName:
+          type: string
+        cpf:
+          type: string
+        birthDate:
+          type: string
+          format: date
+    NotificationPageResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/NotificationResponse"
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
+    NotificationResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        patientId:
+          type: string
+          format: uuid
+        kind:
+          type: string
+        channel:
+          type: string
+        status:
+          type: string
+        attempts:
+          type: integer
+          format: int32
+        nextAttemptAt:
+          type:
+          - string
+          - "null"
+          format: date-time
+        lastErrorCode:
+          type:
+          - string
+          - "null"
+        createdAt:
+          type: string
+          format: date-time
+    CurrentVersionResponse:
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int32
+        createdAt:
+          type: string
+          format: date-time
+    SummaryResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        requiredOnSignup:
+          type: boolean
+        controlsMessaging:
+          type: boolean
+        active:
+          type: boolean
+        currentVersion:
+          $ref: "#/components/schemas/CurrentVersionResponse"
+    TemplateOfferResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        text:
+          type: string
+        requiredOnSignup:
+          type: boolean
+        controlsMessaging:
+          type: boolean
+    AuditEventResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        occurredAt:
+          type: string
+          format: date-time
+        userId:
+          type:
+          - string
+          - "null"
+          format: uuid
+        action:
+          type: string
+        entityType:
+          type: string
+        entityId:
+          type:
+          - string
+          - "null"
+        outcome:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
+    AuditPageResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/AuditEventResponse"
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
+    ClinicOverviewResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        status:
+          type: string
+    ClinicAdminResponse:
+      type: object
+      properties:
+        membershipId:
+          type: string
+          format: uuid
+        email:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+    ClinicDetailResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        status:
+          type: string
+        admins:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClinicAdminResponse"
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Supressões do OWASP dependency-check (ADR-0005). Cada entrada exige justificativa e data de expiração:
+  <suppress until="2026-12-31Z"> ... <notes>motivo e link</notes> ... </suppress>
+-->
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+</suppressions>
