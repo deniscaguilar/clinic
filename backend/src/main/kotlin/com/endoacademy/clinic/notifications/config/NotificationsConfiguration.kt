@@ -74,8 +74,16 @@ class NotificationsConfiguration {
     @Bean
     fun messagingConsentLookup(registry: RegistryApi): MessagingConsentLookup = RegistryMessagingConsentLookup(registry)
 
-    /** Sem provedor de WhatsApp definido (pergunta em aberto do M0), só o adaptador falso, que nunca registra o destinatário. */
+    /**
+     * Escolhe o adaptador de WhatsApp por `clinic.notifications.whatsapp.provider` (hoje só `memory`). Sem valor a aplicação não
+     * sobe (falha fechada), como no e-mail: quando o provedor real existir, produção não poderá ficar no falso por esquecimento.
+     */
     @Bean
+    fun whatsAppProviderCheck(@Value("\${clinic.notifications.whatsapp.provider}") provider: String): WhatsAppProvider = WhatsAppProvider.parse(provider)
+
+    /** O adaptador falso nunca registra o destinatário. */
+    @Bean
+    @ConditionalOnProperty("clinic.notifications.whatsapp.provider", havingValue = "memory")
     fun whatsAppSender(): FakeWhatsAppSender = FakeWhatsAppSender()
 
     /**

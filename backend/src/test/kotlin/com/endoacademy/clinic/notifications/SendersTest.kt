@@ -96,6 +96,14 @@ class SendersTest {
     }
 
     @Test
+    fun `the whatsapp provider setting accepts only the known values`() {
+        assertThat(com.endoacademy.clinic.notifications.config.WhatsAppProvider.parse("memory")).isEqualTo(com.endoacademy.clinic.notifications.config.WhatsAppProvider.MEMORY)
+        listOf("", " ", "MEMORY", "twilio", "meta", "memory ").forEach {
+            assertThatThrownBy { com.endoacademy.clinic.notifications.config.WhatsAppProvider.parse(it) }.describedAs("'$it'").isInstanceOf(IllegalArgumentException::class.java)
+        }
+    }
+
+    @Test
     fun `the SES sender needs a sender address`() {
         listOf("", "   ").forEach {
             assertThatThrownBy { com.endoacademy.clinic.notifications.adapter.out.email.SesEmailSender.create(it, "sa-east-1", "http://localhost:4566") }

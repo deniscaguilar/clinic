@@ -4,6 +4,13 @@ Registro de onde paramos, para retomar a próxima sessão sem reler a conversa. 
 
 ## 30/10/2026
 
+### Imagem, e2e no CI e mock de WhatsApp (30/10/2026)
+- **Decisões suas:** fica pendente o material do Pedro, o provedor do WhatsApp (pronto com mock) e o texto de consentimento com o jurídico. O filtro por nome fica na API (`GET /patients?name=`), e o front não o põe na barra de endereço: o filtro é estado da tela e a rota continua `/patients`. A homologação na AWS saiu das pendências e está em `docs/go-live.md`.
+- **T6.13 Dockerfile + Trivy:** `backend/Dockerfile` multi-stage (JDK/JRE Temurin 25 com digest fixado, camadas do Spring Boot, usuário 10001). Construí a imagem, subi o contêiner contra o Postgres e o OIDC do Compose (health UP) e rodei o Trivy localmente: 0 vulnerabilidades Altas/Críticas. O CI ganhou o job `image-scan` e o Dependabot cobre o Docker de `/backend`.
+- **T6.14 e2e no CI:** job `e2e` sobe Postgres, LocalStack e OIDC mock pelo `docker/compose.yaml` (com `docker/env.example`), o backend no perfil `local`, e roda o Playwright. Sem custo: o repositório é público. **A primeira execução no GitHub é a prova** (não dá para rodar o runner aqui).
+- **T6.15 WhatsApp:** `clinic.notifications.whatsapp.provider` (hoje só `memory`) com falha fechada como o e-mail; o falso continua não guardando nem logando o destinatário. Variável de ambiente `CLINIC_WHATSAPP_PROVIDER`. Mutante do parser morto.
+- **Branch protection:** quando os jobs `image-scan` e `e2e` estiverem verdes, entram nos checks obrigatórios da `main`.
+
 ### Scan de CVE e Dependabot (30/10/2026)
 - **`./mvnw verify -Pscan` rodou com a chave do NVD** (primeira vez, com a base inteira). Único achado Alto/Crítico: **CVE-2026-53914** (CVSS 9.8) em `kotlin-stdlib`, sobre o cache de build do Kotlin (ferramenta de build). Falso positivo para o jar de runtime: o CPE `jetbrains:kotlin` casa pelo nome do produto, o projeto compila com Maven e a versão do Kotlin vem do BOM do Spring Boot. Entrou em `backend/dependency-check-suppressions.xml` com justificativa e **expiração em 31/12/2026**; com ela, o portão passa (`dependency-check:check` com `BUILD SUCCESS`).
 - **Dependabot:** fechados o #3 (TypeScript 7, quebra o `openapi-typescript` 7, que exige TS 5.x) e o #4 (`@types/node` 26, o projeto usa Node 24 LTS); `dependabot.yml` ignora majors desses dois pacotes. O #2 (wrapper do Maven 3.9.14 para 3.10.0) passou no CI e segue para revisão.
