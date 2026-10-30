@@ -15,12 +15,12 @@ function Wrapper({ id, label, error, children }: Common & { id: string; children
   )
 }
 
-export function TextField({ label, error, value, onChange, type = 'text', multiline = false }: Common & { value: string; onChange: (value: string) => void; type?: string; multiline?: boolean }) {
+export function TextField({ label, error, value, onChange, type = 'text', multiline = false, readOnly = false }: Common & { value: string; onChange: (value: string) => void; type?: string; multiline?: boolean; readOnly?: boolean }) {
   const id = useId()
   const props = { id, value, 'aria-invalid': error ? true : undefined, 'aria-describedby': error ? `${id}-error` : undefined }
   return (
     <Wrapper id={id} label={label} error={error}>
-      {multiline ? <textarea {...props} rows={8} onChange={(e) => onChange(e.target.value)} /> : <input {...props} type={type} onChange={(e) => onChange(e.target.value)} />}
+      {multiline ? <textarea {...props} rows={8} readOnly={readOnly} onChange={(e) => onChange(e.target.value)} /> : <input {...props} type={type} readOnly={readOnly} onChange={(e) => onChange(e.target.value)} />}
     </Wrapper>
   )
 }

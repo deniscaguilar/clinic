@@ -6,7 +6,7 @@
       "issuerId": "clinic",
       "requestMappings": [
         {
-          "requestParam": "scope",
+          "requestParam": "grant_type",
           "match": "*",
           "claims": {
             "sub": "local-user",

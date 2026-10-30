@@ -132,6 +132,12 @@ Convenções: código, pacotes, pastas e testes em inglês; documentação e com
 - [x] T6.8. Fluxo crítico em Playwright: login, escolha de clínica, cadastro de paciente com consentimento.
   - Teste: o próprio fluxo contra Compose local.
 - [x] T6.9. Fechar a S6 e o M0: `./mvnw verify` e testes do front verdes; verificar todos os CA1 a CA18 contra os testes; atualizar spec, `progress-log.md` e `docs/roadmap.md` (cópia em `/Users/denis/EndoAcademy/roadmap/`).
+- [x] T6.10. Tela de notificações (`/notifications`): lista com tipo, canal, situação, tentativas, próxima tentativa e erro; filtros por situação e canal; paginação; paciente só por id.
+  - Teste (Vitest): lista, filtros enviados, estados vazio e de erro por `code`.
+- [x] T6.11. Edição de paciente (`/patients/:id/edit`): formulário compartilhado com o cadastro; CPF somente leitura sem `CHANGE_PATIENT_CPF` e só enviado quando muda.
+  - Teste (Vitest): dados carregados, CPF por permissão, validação, erros por `code`.
+- [x] T6.12. Login manual no mock OIDC: `docker/oidc/oidc-config.json` casa o mapeamento de claims por `grant_type` (antes por `scope`, que o fluxo de código não envia). Decisão do Denis em 30/10/2026.
+  - Teste: Playwright sem o workaround das claims no formulário de login.
 
 ## Fora das tarefas (por regra)
 

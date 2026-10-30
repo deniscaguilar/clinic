@@ -15,7 +15,9 @@ import { PractitionersPage } from './clinicadmin/PractitionersPage'
 import { ProceduresPage } from './clinicadmin/ProceduresPage'
 import { RolesPage } from './clinicadmin/RolesPage'
 import { UsersPage } from './clinicadmin/UsersPage'
+import { NotificationsPage } from './notifications/NotificationsPage'
 import { PatientDetailPage } from './patients/PatientDetailPage'
+import { PatientEditPage } from './patients/PatientEditPage'
 import { PatientNewPage } from './patients/PatientNewPage'
 import { PatientsPage } from './patients/PatientsPage'
 import { Shell } from './layout/Shell'
@@ -58,6 +60,8 @@ export function App() {
         <Route path="patients" element={<PatientsPage />} />
         <Route path="patients/new" element={<PatientNewPage />} />
         <Route path="patients/:id" element={<PatientDetailPage />} />
+        <Route path="patients/:id/edit" element={<PatientEditPage />} />
+        <Route path="notifications" element={<NotificationsPage />} />
         <Route path="users" element={<UsersPage />} />
         <Route path="roles" element={<RolesPage />} />
         <Route path="branding" element={<BrandingPage />} />

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
 import { useApi } from '../api/ApiProvider'
 import { call } from '../api/errors'
 import { useSession } from '../session/SessionProvider'
@@ -37,6 +37,7 @@ export function PatientDetailPage() {
   return (
     <section>
       <h1>{patient?.fullName}</h1>
+      {can('MANAGE_PATIENTS') && <Link to={`/patients/${id}/edit`}>{t('patients.editLink')}</Link>}
       <dl>
         <dt>{t('patients.cpf')}</dt>
         <dd>{formatCpf(patient?.cpf)}</dd>
