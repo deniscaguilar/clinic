@@ -14,6 +14,7 @@ Itens que ficam para quando o produto estiver pronto para sair do ambiente local
 
 - Texto, base legal e retenção dos consentimentos revisados pelo jurídico (hoje só `docs/consent/textos-de-teste.md`, sem validade jurídica). Revisão jurídica de LGPD antes de entrar dado clínico real (Etapa 4).
 - Provedor e custo do WhatsApp: trocar o adaptador falso (`clinic.notifications.whatsapp.provider=memory`) pelo real; produção não pode ficar no falso.
+- **Identidade visual e design** (nome definitivo do produto, logo, paleta, tipografia, layout e componentes): decisão de Dênis em 30/10/2026 de deixar para a **etapa final de construção**. Hoje só existe o mecanismo por clínica (cores, logo e favicon via CSS variables); as telas estão sem estilo e os ícones do PWA são placeholders.
 - Material de curadoria do Pedro e validação do M0 com a clínica piloto.
 
 ## Qualidade que já está no CI
