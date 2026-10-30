@@ -4,6 +4,13 @@ Registro de onde paramos, para retomar a próxima sessão sem reler a conversa. 
 
 ## 30/10/2026
 
+### Onde paramos (fim do dia, 30/10/2026): Etapa 2 iniciada, spec e plano do M9 aprovados
+- **Estado do repositório:** `main` com o M0 inteiro e os extras (notificações, edição de paciente, login manual, Dockerfile, Trivy, e2e no CI, mock de WhatsApp, supressão do CVE). Proteção da `main` com 6 checks obrigatórios. Sem PR aberto além desta branch de documentação.
+- **Etapa 2 · M9 Agenda do médico (`scheduling`):** `specs/scheduling/m9-agenda/spec.md` (15 RF, 30 CA) e `plan.md` **aprovados por Dênis no Plannotator em 30/10/2026**. Decisões: bloqueio de conflito e de horário fora do expediente; duração padrão no procedimento e da consulta por clínica; permissões `VIEW_SCHEDULE`, `VIEW_OWN_SCHEDULE`, `MANAGE_APPOINTMENTS` e `MANAGE_SCHEDULE_SETTINGS`; vários procedimentos por atendimento e agenda também de enfermeiros; confirmação e dois lembretes (24 h e 2 h, por clínica); situações Marcado, Concluído, Cancelado e Faltou.
+- **Próximo passo:** escrever `specs/scheduling/m9-agenda/tasks.md` (tarefas pequenas e testáveis, a começar por confirmar se o usuário de migração cria `btree_gist`), criar os cards no board do Notion, abrir para aprovação no Plannotator e só então implementar test-first. A mudança de `notifications` (fila) já está autorizada na spec.
+- **Pendências suas (inalteradas):** material do Pedro, texto e retenção do consentimento com o jurídico, provedor real do WhatsApp. **Identidade visual:** etapa final de construção (registrada em `docs/go-live.md`). Homologação na AWS: em `docs/go-live.md`.
+- **Como subir tudo local:** Compose (`docker compose -f docker/compose.yaml --env-file docker/.env up -d`), `cd backend && ./mvnw spring-boot:run -Dspring-boot.run.profiles=local`, `cd app && npm run dev` (Node 24 via `nvm use`), http://localhost:5173. Login: qualquer usuário no mock OIDC.
+
 ### Imagem, e2e no CI e mock de WhatsApp (30/10/2026)
 - **Decisões suas:** fica pendente o material do Pedro, o provedor do WhatsApp (pronto com mock) e o texto de consentimento com o jurídico. O filtro por nome fica na API (`GET /patients?name=`), e o front não o põe na barra de endereço: o filtro é estado da tela e a rota continua `/patients`. A homologação na AWS saiu das pendências e está em `docs/go-live.md`.
 - **T6.13 Dockerfile + Trivy:** `backend/Dockerfile` multi-stage (JDK/JRE Temurin 25 com digest fixado, camadas do Spring Boot, usuário 10001). Construí a imagem, subi o contêiner contra o Postgres e o OIDC do Compose (health UP) e rodei o Trivy localmente: 0 vulnerabilidades Altas/Críticas. O CI ganhou o job `image-scan` e o Dependabot cobre o Docker de `/backend`.
