@@ -4,6 +4,10 @@ Registro de onde paramos, para retomar a próxima sessão sem reler a conversa. 
 
 ## 30/10/2026
 
+### Scan de CVE e Dependabot (30/10/2026)
+- **`./mvnw verify -Pscan` rodou com a chave do NVD** (primeira vez, com a base inteira). Único achado Alto/Crítico: **CVE-2026-53914** (CVSS 9.8) em `kotlin-stdlib`, sobre o cache de build do Kotlin (ferramenta de build). Falso positivo para o jar de runtime: o CPE `jetbrains:kotlin` casa pelo nome do produto, o projeto compila com Maven e a versão do Kotlin vem do BOM do Spring Boot. Entrou em `backend/dependency-check-suppressions.xml` com justificativa e **expiração em 31/12/2026**; com ela, o portão passa (`dependency-check:check` com `BUILD SUCCESS`).
+- **Dependabot:** fechados o #3 (TypeScript 7, quebra o `openapi-typescript` 7, que exige TS 5.x) e o #4 (`@types/node` 26, o projeto usa Node 24 LTS); `dependabot.yml` ignora majors desses dois pacotes. O #2 (wrapper do Maven 3.9.14 para 3.10.0) passou no CI e segue para revisão.
+
 ### Extras do M0: notificações, edição de paciente e login manual (30/10/2026)
 - **T6.10 tela de notificações** (`/notifications`, o item de menu existia sem tela): lista com tipo, canal, situação, tentativas, código de erro e próxima tentativa, filtros por situação e canal, paginação, horário em `America/Sao_Paulo`, paciente só por id. 8 testes; 5 mutantes mortos.
 - **T6.11 edição de paciente** (`/patients/:id/edit`): o formulário foi extraído do cadastro (`PatientForm`) e é usado pelos dois. Sem `CHANGE_PATIENT_CPF` o CPF aparece somente leitura; com a permissão, só é enviado se mudou (senão `null`, e o servidor confere a permissão de novo). Link "Editar paciente" só com `MANAGE_PATIENTS`. 11 testes; 7 mutantes mortos.
