@@ -1,0 +1,19 @@
+{
+  "interactiveLogin": true,
+  "httpServer": "NettyWrapper",
+  "tokenCallbacks": [
+    {
+      "issuerId": "clinic",
+      "requestMappings": [
+        {
+          "requestParam": "scope",
+          "match": "*",
+          "claims": {
+            "sub": "local-user",
+            "aud": ["clinic-api"]
+          }
+        }
+      ]
+    }
+  ]
+}

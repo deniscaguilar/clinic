@@ -1,0 +1,7 @@
+# Supressões do OSV-Scanner (CLAUDE.md, seção 7): só com justificativa e data de expiração.
+# Modelo:
+#
+# [[IgnoredVulns]]
+# id = "GHSA-xxxx-xxxx-xxxx"
+# ignoreUntil = 2026-12-31
+# reason = "Por que não afeta, ou plano e prazo de correção."
