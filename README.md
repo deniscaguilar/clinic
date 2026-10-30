@@ -11,6 +11,7 @@ Sistema de gestão clínica (PWA + backoffice) para a Clínica da DCA e, depois,
 | `docs/architecture.md` | Módulos, dependências permitidas e visão geral |
 | `docs/workflow.md` | Fluxo SDD, Git, ambiente local e portão do CI |
 | `docs/progress-log.md` | Diário de progresso: onde paramos e próximos passos |
+| `docs/go-live.md` | O que falta antes do go-live (AWS, jurídico, WhatsApp real) |
 | `docs/consent/` | Textos de consentimento **de teste** (sem validade jurídica) |
 | `docs/adr/` | Decisões de arquitetura (ADRs) |
 | `specs/` | Specs (SDD): `spec.md` → `plan.md` → `tasks.md` por funcionalidade |

@@ -1,0 +1,8 @@
+# Supressões do Trivy (CLAUDE.md, seção 7): só com justificativa (statement) e data de expiração (expired_at).
+# Modelo:
+#
+# vulnerabilities:
+#   - id: CVE-0000-00000
+#     expired_at: 2026-12-31
+#     statement: "Por que não afeta, ou plano e prazo de correção."
+vulnerabilities: []

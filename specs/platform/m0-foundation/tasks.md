@@ -138,10 +138,16 @@ Convenções: código, pacotes, pastas e testes em inglês; documentação e com
   - Teste (Vitest): dados carregados, CPF por permissão, validação, erros por `code`.
 - [x] T6.12. Login manual no mock OIDC: `docker/oidc/oidc-config.json` casa o mapeamento de claims por `grant_type` (antes por `scope`, que o fluxo de código não envia). Decisão do Denis em 30/10/2026.
   - Teste: Playwright sem o workaround das claims no formulário de login.
+- [x] T6.13. Dockerfile do backend (multi-stage, base com digest fixado, usuário sem privilégio) e scan da imagem com Trivy no CI (`.trivyignore.yaml` com justificativa e expiração).
+  - Teste: a imagem sobe com health UP; Trivy sem Alta/Crítica.
+- [x] T6.14. E2E (Playwright) no CI: o job sobe Postgres, LocalStack e OIDC mock (`docker/compose.yaml`), o backend no perfil `local` e roda o fluxo crítico. Sem custo (Actions em repositório público).
+  - Teste: o próprio job.
+- [x] T6.15. Chave `clinic.notifications.whatsapp.provider` com falha fechada (hoje só `memory`, o adaptador falso), para trocar pelo provedor real sem esquecer o falso em produção.
+  - Teste: provedor desconhecido ou vazio derruba a subida; fiação do adaptador falso.
 
 ## Fora das tarefas (por regra)
 
-Nenhum deploy, `apply` de infra nem custo na AWS faz parte do M0. Dockerfile, pipeline de CI, Trivy na imagem e OpenTofu seguem em spec própria antes do go-live. Verificação real do Cognito acontece no ambiente de fumaça, antes do go-live.
+Nenhum deploy, `apply` de infra nem custo na AWS faz parte do M0 (veja `docs/go-live.md`). O pipeline de CI, o Dockerfile e o Trivy na imagem entraram depois (T6.13 e T6.14); OpenTofu segue em spec própria antes do go-live. Verificação real do Cognito acontece no ambiente de fumaça, antes do go-live.
 
 ## Aprovação
 - [x] Aprovado por: Denis em 28/10/2026

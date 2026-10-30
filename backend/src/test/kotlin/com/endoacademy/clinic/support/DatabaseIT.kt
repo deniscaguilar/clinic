@@ -12,6 +12,7 @@ import org.springframework.test.context.DynamicPropertySource
         "clinic.identity.provider=local",
         "clinic.storage.provider=memory",
         "clinic.notifications.email.provider=memory",
+        "clinic.notifications.whatsapp.provider=memory",
         "clinic.notifications.worker.enabled=false",
     ],
 )

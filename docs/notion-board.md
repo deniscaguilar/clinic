@@ -6,7 +6,7 @@ Espelho do `specs/platform/m0-foundation/tasks.md` (que é a fonte da verdade; e
 - **Banco:** "Sistema da Clínica · Tarefas" (`cd0b4604bef44ae4977add61800c6665`); data source `collection://c17e7ff4-560b-47bc-aa51-b0c46d2e5042`.
 - **Visões:** "Board por status" (agrupado por Status, ordenado por Ordem; `view://407058f8-4000-812c-8459-000caada9d81`) e a tabela geral.
 - **Também na área:** a ata da reunião de 21/10 ("Self Clinic + Tecnologia + IA", `400058f8-4000-8078-b94a-f43e03825732`).
-- **Propriedades:** Tarefa, ID (`T1.1`...), Status (`OPEN`, `DOING`, `REVIEW`, `BLOCKED`, `CANCELED`, `DONE`), Fatia (`S1` a `S6`), Critérios, Motivo do bloqueio, Ordem (1 a 59, sequência do `tasks.md`).
+- **Propriedades:** Tarefa, ID (`T1.1`...), Status (`OPEN`, `DOING`, `REVIEW`, `BLOCKED`, `CANCELED`, `DONE`), Fatia (`S1` a `S6`), Critérios, Motivo do bloqueio, Ordem (1 a 62, sequência do `tasks.md`).
 - **Conector:** `plugin:marketing:notion`; se pedir login, autenticar de novo em `/mcp`.
 
 ## Como atualizar
@@ -15,7 +15,7 @@ Espelho do `specs/platform/m0-foundation/tasks.md` (que é a fonte da verdade; e
 
 ## Estado em 30/10/2026
 
-S1 a S6 (T1.1 a T6.12) inteiras em `DONE`.
+S1 a S6 (T1.1 a T6.15) inteiras em `DONE`.
 
 ## Cards (page id)
 
@@ -80,3 +80,6 @@ S1 a S6 (T1.1 a T6.12) inteiras em `DONE`.
 | T6.10 | `409058f8-4000-811c-8b6f-fba07624be45` |
 | T6.11 | `409058f8-4000-81d3-b99a-fc89fa1a3d4f` |
 | T6.12 | `409058f8-4000-811d-903f-d3f1cf7c861b` |
+| T6.13 | `409058f8-4000-81d0-969a-fc94cd49d31a` |
+| T6.14 | `409058f8-4000-8168-857a-de06c3704c5a` |
+| T6.15 | `409058f8-4000-8157-849c-fd7abe95320e` |
