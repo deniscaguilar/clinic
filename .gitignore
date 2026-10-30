@@ -1,0 +1,25 @@
+# Segredos e ambiente local
+.env
+docker/.env
+*.pem
+*.tfvars
+!*.tfvars.example
+
+# Build e IDE
+target/
+build/
+node_modules/
+dist/
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# OpenTofu / Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Cobertura e relatórios
+coverage/
