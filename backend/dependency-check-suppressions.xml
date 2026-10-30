@@ -4,4 +4,16 @@
   <suppress until="2026-12-31Z"> ... <notes>motivo e link</notes> ... </suppress>
 -->
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+  <suppress until="2026-12-31Z">
+    <notes><![CDATA[
+      CVE-2026-53914 (CVSS 9.8): "In JetBrains Kotlin before 2.4.20 code execution was possible via unsafe deserialization in the
+      build cache metadata". O alvo é o cache de build do Kotlin (ferramenta de build); o jar de runtime (kotlin-stdlib) não executa
+      esse código, e este projeto compila com Maven, sem esse cache. O CPE jetbrains:kotlin casa a stdlib só pelo nome do produto.
+      A versão do Kotlin vem do BOM do Spring Boot (2.3.x no Boot 4.1.2); não sobrescrevemos sem necessidade (CLAUDE.md, seção 7).
+      Reavaliar até a expiração: se o BOM passar para Kotlin >= 2.4.20 a entrada some sozinha.
+      https://www.jetbrains.com/privacy-security/issues-fixed/
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/.*$</packageUrl>
+    <cve>CVE-2026-53914</cve>
+  </suppress>
 </suppressions>

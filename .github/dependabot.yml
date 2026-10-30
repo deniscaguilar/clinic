@@ -12,6 +12,13 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    ignore:
+      # O openapi-typescript 7 exige TypeScript 5.x (peer); reavaliar quando ele suportar a versão nova.
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
+      # @types/node acompanha o Node LTS do projeto (app/.nvmrc).
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     commit-message:
       prefix: "chore(deps)"
   - package-ecosystem: github-actions
