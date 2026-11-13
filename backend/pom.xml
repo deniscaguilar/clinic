@@ -24,7 +24,7 @@
     <spring-modulith.version>2.1.2</spring-modulith.version>
     <jacoco.version>0.8.16</jacoco.version>
     <springdoc.version>3.2.0</springdoc.version>
-    <mock-oauth2-server.version>6.1.3</mock-oauth2-server.version>
+    <mock-oauth2-server.version>6.1.5</mock-oauth2-server.version>
     <dependency-check.version>13.0.0</dependency-check.version>
     <!-- Portão de cobertura em domain + application (CLAUDE.md, seção 6). -->
     <!-- AWS SDK v2 não é gerenciado pelo BOM do Boot; versão GA verificada no Maven Central em 29/10/2026 -->
