@@ -19,7 +19,7 @@
     "e2e": "playwright test"
   },
   "dependencies": {
-    "i18next": "26.5.12",
+    "i18next": "27.1.1",
     "oidc-client-ts": "3.5.0",
     "openapi-fetch": "0.17.0",
     "react": "19.3.1",
