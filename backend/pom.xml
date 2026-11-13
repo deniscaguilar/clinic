@@ -29,7 +29,7 @@
     <!-- Portão de cobertura em domain + application (CLAUDE.md, seção 6). -->
     <!-- AWS SDK v2 não é gerenciado pelo BOM do Boot; versão GA verificada no Maven Central em 29/10/2026 -->
     <!-- MockK não é gerenciado pelo BOM do Boot; versão GA verificada no Maven Central em 28/10/2026 (T1.1) -->
-    <mockk.version>1.14.11</mockk.version>
+    <mockk.version>1.14.12</mockk.version>
     <aws-sdk.version>2.57.6</aws-sdk.version>
     <coverage.minimum>0.85</coverage.minimum>
   </properties>
